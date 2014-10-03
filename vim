@@ -19,6 +19,6 @@ Ditched Vim Tabs for TMUX Windows
 
 Using Vim Buffers, Windows, and Tabs
 
-My greatest hurtle when learning to work with Vim effectively was establishing a flow, particularly when navigating multiple files.  Most editors, even most software in general, uses a tabbed interface that's become so universal nearly all apps implement the same keyboard shortcuts - and I've become damn good at it!  Naturally then, I jumped into Vim without realizing how much this preconception would work against me.
+My greatest hurtle when learning to work with Vim effectively was establishing a flow, particularly when navigating multiple files.  Most editors, even most applications in general, use a tabbed interface that's become so universal nearly all apps implement the same keyboard shortcuts - and I've become damn good at it!  Naturally then, I jumped into Vim without realizing how much this preconception would work against me.
 
-So I learned to work with Vimk
+My past experience told me to run one instance of Vim, a tab for each project, and multiple windows within each tab.  That alone is a step up from most other editors and so I did.  I learned the tab commands and how to navigate multiple current working directories, an issue I've finally realized is merely a symptom of the larger problem - Vim wasn't built this way!  In fact, tabs were only recently added in version 7.0, over a decade after the initial release(wiki link).
