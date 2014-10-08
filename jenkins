@@ -1,0 +1,6 @@
+
+Automating Business Tasks with Jenkins
+
+Jenkins has proven to be an invaluable tool for our web development firm.  The continuous deployment and automated testing features are essential, but we've also learned to use Jenkins for scripting tasks and cron jobs.  Whether or not it was ever intended to be used these ways, it's become vital to our business process.
+
+Once the Jenkins user has the necessary SSH credentials to navigate the infrastructure, he becomes a vital servant whom I'll address as 'he' from here on out.
