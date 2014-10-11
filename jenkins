@@ -2,9 +2,13 @@
 Automating Business Tasks with Jenkins
 Jenkins Automation
 
-Continuous integration and automated testing are essential to our internal operations, but two seemingly simple Jenkin's features have evolved to be more important than we ever imagined – bash scripts and scheduled jobs.  We were aware of them from the beginning but they were easily brushed aside, we were in this for CI after all.  Run bash scripts?  Yeah, why not.  Replace cron jobs?  OK, we'll see about that.
+Continuous integration and automated testing are essential to our internal operations, but two seemingly simple Jenkin's features have evolved to be more important than we ever imagined – bash scripts and scheduled jobs.  We were aware of them from the beginning but they were easily brushed aside, we were in this for the CI after all.  Run bash scripts?  Yeah, why not.  Replace cron jobs?  OK, we'll see about that.
 
-And now I fondly remember the day I created "Get Version" 
+Today I fondly look back on the day we created 'Check Version', a Jenkins job that simply runs 'git status' for a given project in a given environment.  Once the Jenkins user is setup for SSH access, it's as easy to create these jobs as it is for non-technical people to use them.  Now a couple of years down the road, we've automated everything from basic Git functions to sophisticated data migrations.
+
+One interesting note.  In the beginning, we gave these jobs user-friendly names but later decided that was causing some confusion and 'Check Version' became 'Git Status'.  Maybe that's a lot to ask, but our teammates soon came to understand the concepts more accurately and it's been a net benefit for all despite the initial challenges.
+
+
 
 When we first realized how easy it was to expose a Bash script through a web interface with simple inputs, we just ran wit
 
