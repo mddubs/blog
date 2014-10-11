@@ -8,16 +8,4 @@ Today I fondly look back on the day we created 'Check Version', a Jenkins job th
 
 One interesting note.  In the beginning, we gave these jobs user-friendly names but later decided that was causing some confusion and 'Check Version' became 'Git Status'.  Maybe that's a lot to ask, but our teammates soon came to understand the concepts more accurately and it's been a net benefit for all despite the initial challenges.
 
-
-
-When we first realized how easy it was to expose a Bash script through a web interface with simple inputs, we just ran wit
-
- but Jenkin's ability to expose Bash scripts has really helped us automate our internal operations.  Over time it's grown to quite a bit of code, and just now as I'm writing this I'm wondering if I should investigate using something other than Bash... but I digress.  The point is, when exposing these scripts as Jenkins Jobs with web friendly inputs, we allow our non-technical people to accomplish much more on their own.  I wish I could calculate the increase in efficiency somehow, but it's substantial.
-
-Beyond the standard continuous integration and automated testing features, we've put a lot of effort into automating Jenkins to accomplish specific business tasks.  By creating custom bash scripts and exposing them as Jenkins jobs, we're able to give many of our non-technical people super powers. Whether or not it was ever intended to be used these ways, it's become vital to our business process.
-
-Once the Jenkins user has the necessary SSH credentials to navigate the infrastructure, he becomes a virtual servant whom I'll address as 'he' from here on out.  From a centralized location you can schedule what he'll do, when he'll do it, and he'll be sure to report back diligently.
-
-Cron jobs
-Bash scripts
-versatile indispensible
+As Jenkins grew to become our central technical dashboard, we began replacing cron jobs with scheduled Jenkins jobs.  Not only does it give our business people a little insight into what's going on, but the email notifications and the visual history are a big help as well.
