@@ -1,9 +1,11 @@
 Custom Top-Level Domains
 
-Top-level domains, TLDs, are the last part of domain names: .com, .org, .net, etc.  By running our own DNS server, BIND, we've created a custom TLD for each of our environments: .dev, .qa, .stg, and .prod.  This allows all employees to quickly and consistently navigate hundreds of projects among multiple environments, by simply appending the environment name in the URL.
+Top-level domains, TLDs, are the last part of domain names: .com, .org, .net, etc.  By customizing our own DNS server, we've created a TLD for each of our environments: .dev, .qa, .stg, and .prod.  This allows all employees to quickly and consistently navigate hundreds of projects among multiple environments, by simply appending the environment name in the URL.
 
-Consistency is key.  We currently develop and maintain hundreds of custom websites but it might as well be tens of thousands - the process won't change.  The only upfront requirement is to know the primary domain name, let's say www.example.com.  We'll then name all resources related to that project `www_example_com`.  The Git repo, the database, the Jenkins jobs, the Redmine project, everything.
+[[IMAGE]]
+
+Consistency is key.  We currently develop and maintain hundreds of custom websites but it might as well be thousands - the process won't change.  The only upfront requirement is to know the primary domain name, let's say www.example.com.  We'll then name all resources related to that project `www_example_com`.  The Git repo, the database, the Jenkins jobs, the Redmine project, everything.
 
 Granted, if the domain name changes we have a problem.  Fortunately it doesn't happen too often.  But it does happen, and although an AUTOMATED SCRIPT will handle the bulk of the work, we always send it to development for a final check before pushing it up through the environments.
 
-Overall, it's worked well for the last few years.  Everyone knows exactly where to find any project, in any environment, by a quick glance of whatever resource they've stumbled upon throughout their day.  An added sysadmin benefit is quickly distinguishing private and public routing for subnets that have external access (ie staging and production).  Simply adding or removing .prod from the URL can help troubleshoot a variety of networking issues.
+Overall, it's worked well for the last few years.  Everyone knows exactly where to find any project, in any environment, by a quick glance of whatever resource they've stumbled upon throughout their day.  Our sysadmins can also quickly distinguish private and public routing for subnets that have external access (ie staging and production).  Simply adding or removing .prod from the URL can help troubleshoot a variety of networking issues.
