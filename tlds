@@ -1,12 +1,8 @@
 Custom Top-Level Domains
 
-A top-level domain, or TLD, is the final section of a domain name: .com, .org, .net, etc.  By customizing our own DNS server, we've created TLDs for each of our environments: .lcl, .dev, .qa, .stg, and .prod.  This allows everyone to quickly and consistently navigate hundreds of projects among multiple environments, by simply appending the environment name in the URL.
+A top-level domain, or TLD, is the final section of a domain name: .com, .org, .net, etc.  By customizing our own DNS server, we've created TLDs for each of our environments: .lcl, .dev, .qa, .stg, and .prod.  This allows everyone to quickly and consistently navigate hundreds of projects among multiple environments by simply appending the environment name to the URL.
 
 [IMAGE]
-
-Consistency is key.  We develop and maintain hundreds of custom websites but it might as well be thousands - the process won't change.  The only upfront requirement is to know the primary domain name, let's say www.example.com.  We'll then name all resources related to that project `www_example_com`.  The Git repo, the database, the Jenkins jobs, the Redmine project, everything.
-
-Granted, if the domain name changes we have a problem.  Fortunately it doesn't happen too often.  But it does happen, and although an [automated script] will handle the bulk of the work, we always send it to development for a final check before rolling it out.
 
 To accomplish this, our BIND server `named.conf` contains entries like:
 
@@ -28,10 +24,6 @@ $TTL 3H
 @ IN NS    ns.example.biz.
 * IN CNAME dev.example.biz.
 
-Anything ending in .dev (example.com.dev, www.example.com.dev, example.exampletwo.org.dev, etc) will resolve to some dev.example.biz server, where Apache's virtualhost configurations will serve the appropriate site based on the hostname.
+Anything ending in .dev (example.com.dev, www.example.com.dev, example.exampletwo.org.dev, etc) will resolve to this dev.example.biz server, where Apache's virtualhost configurations will serve the appropriate site based on the hostname.
 
-This has worked well for the last few years.  Everyone knows exactly where to find any project, in any environment, by a quick glance of whatever resource they've stumbled upon.  Also, our sysadmins can quickly distinguish private and public routing for subnets that have external access (i.e. staging and production).  Simply adding or removing .prod from the URL can help troubleshoot a variety of networking issues.
-
-
-
-The .lcl zone is a little odd in that it always resolves to the loopback address (127.0.0.1).  For our developers who choose to follow this pattern (and not all do) it helps maintain consistency across tons of projects.  If you follow the pattern for [Apache Consistency] (could be a whole separate blog post), the Git repo will just work.
+This process has worked well for the last couple of years.  Everyone knows exactly where to find any project, in any environment, no matter how many thousands of sites we develop and maintain.  Also, our sysadmins can quickly distinguish private and public routing for subnets that have external access (i.e. staging and production).  Simply adding or removing .prod from the URL can help troubleshoot a variety of networking issues.
