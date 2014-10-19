@@ -1,6 +1,6 @@
 Custom Top-Level Domains
 
-Top-level domains, TLDs, are the last part of domain names: .com, .org, .net, etc.  By customizing our own DNS server, we've created a TLD for each of our environments: .lcl, .dev, .qa, .stg, and .prod.  This allows all employees to quickly and consistently navigate hundreds of projects among multiple environments, by simply appending the environment name in the URL.
+A top-level domain, or TLD, is the final section of a domain name: .com, .org, .net, etc.  By customizing our own DNS server, we've created TLDs for each of our environments: .lcl, .dev, .qa, .stg, and .prod.  This allows everyone to quickly and consistently navigate hundreds of projects among multiple environments, by simply appending the environment name in the URL.
 
 [IMAGE]
 
@@ -8,29 +8,30 @@ Consistency is key.  We develop and maintain hundreds of custom websites but it 
 
 Granted, if the domain name changes we have a problem.  Fortunately it doesn't happen too often.  But it does happen, and although an [automated script] will handle the bulk of the work, we always send it to development for a final check before rolling it out.
 
-This has worked well for the last few years.  Everyone knows exactly where to find any project, in any environment, by a quick glance of whatever resource they've stumbled upon throughout their day.  Our sysadmins can also quickly distinguish private and public routing for subnets that have external access (ie staging and production).  Simply adding or removing .prod from the URL can help troubleshoot a variety of networking issues.
+To accomplish this, our BIND server `named.conf` contains entries like:
 
-Specifically, we run a customized BIND server with entries in our `named.conf` as follows: 
-
-zone "lcl." in {
-    type master;
-    file "/var/named/zones/wildcard/lcl";
-};
 zone "dev." in {
     type master;
     file "/var/named/zones/wildcard/dev";
 };
-zone "qa." in {
-    type master;
-    file "/var/named/zones/wildcard/qa";
-};
-zone "stg." in {
-    type master;
-    file "/var/named/zones/wildcard/stg";
-};
-zone "prod." in {
-    type master;
-    file "/var/named/zones/wildcard/prod";
-};
+
+That zone file contains a single wildcard CNAME record:
+
+$TTL 3H
+@ IN SOA dev. root.dev. (
+  0  ; serial
+  3H ; refresh
+  1H ; retry
+  1W ; expire
+  1H ; minimum
+);
+@ IN NS    ns.example.biz.
+* IN CNAME dev.example.biz.
+
+Anything ending in .dev (example.com.dev, www.example.com.dev, example.exampletwo.org.dev, etc) will resolve to some dev.example.biz server, where Apache's virtualhost configurations will serve the appropriate site based on the hostname.
+
+This has worked well for the last few years.  Everyone knows exactly where to find any project, in any environment, by a quick glance of whatever resource they've stumbled upon.  Also, our sysadmins can quickly distinguish private and public routing for subnets that have external access (i.e. staging and production).  Simply adding or removing .prod from the URL can help troubleshoot a variety of networking issues.
+
+
 
 The .lcl zone is a little odd in that it always resolves to the loopback address (127.0.0.1).  For our developers who choose to follow this pattern (and not all do) it helps maintain consistency across tons of projects.  If you follow the pattern for [Apache Consistency] (could be a whole separate blog post), the Git repo will just work.
